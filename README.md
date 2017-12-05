@@ -10,7 +10,7 @@
 1. Prepare images
 1.1 split images
 * clear all the directories in "public/images"
-* go to "local/global.js" to set group number
+* go to "local/global.js" to set group number !!! VERY IMPORTANT
 * node split-images
 1.2 prepare ground truth images in each "public/images/group-id/" directory
 test-id-groundtruth
@@ -20,7 +20,7 @@ The threshold for labelling accuracy can be set in "./routes/results.js" ACCURAC
 
 2. init database
 * set redis ip and port in database.js !!! VERY IMPORTANT
-* run db_clear
+* run db_flush
 * run db_init
 
 3. node ./bin/www
