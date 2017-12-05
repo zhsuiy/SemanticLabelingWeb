@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>
+		<%= title %>
+	</title>
+	<link href="/stylesheets/bootstrap.css" rel="stylesheet">
+	<!-- Custom styles for this template -->
+	<link href="/stylesheets/jumbotron.css" rel="stylesheet">
+	<link href='/stylesheets/style.css' rel='stylesheet'>
+	<link href="/stylesheets/awesome-bootstrap-checkbox.css" rel='stylesheet'>
+	<link href='/font-awesome/css/font-awesome.min.css' rel='stylesheet'>
+	
+	<script type="application/javascript" src="/javascripts/jquery-1.11.1.js"></script>
+	<script type="application/javascript" src="/javascripts/bootstrap.js"></script>
+	<!--    <script type="application/javascript" src="/routes/datacontrol.js"></script> -->
+</head>
+<script>
+	var tid = <%= curTid %>,
+		array = <%- JSON.stringify(tutorials) %>,
+		slideIndex;
+
+	function showSlides() {
+		var slides = $("#tid-" + tid + " > .slide");
+		var dots = $("#tid-" + tid + " span.dot");
+		if (slideIndex > slides.length) {
+			slideIndex = 1;
+		}
+		if (slideIndex < 1) {
+			slideIndex = slides.length;
+		}
+		for (var i = 0; i < slides.length; i++) {
+			slides[i].style.display = "none";
+		}
+		for (i = 0; i < dots.length; i++) {
+			dots[i].className = dots[i].className.replace(" active", "");
+		}
+		slides[slideIndex - 1].style.display = "block";
+  		dots[slideIndex - 1].className += " active";
+	}
+
+	function advanceSlide(offset) {
+		slideIndex += offset;
+		showSlides();
+	}
+
+	function curentSlide(index) {
+		slideIndex = index;
+		showSlides();
+	}
+
+	function nextTutorial() {
+		$("#tid-" + tid++).hide();
+		$("#title span").text(tid + 1);
+		$("#desc strong").text(array[tid].tId.toUpperCase());
+		$("#tid-" + tid).show();
+		slideIndex = 1;		
+		showSlides();
+		if (tid == array.length - 1) {
+			$("#next-tutorial-btn").hide();
+			$("#try-btn").show();
+		}
+	}
+	
+	function start() {
+		window.location.href = "/label";
+	}
+
+	$().ready(function () {
+		slideIndex = 1;
+		showSlides();
+	});
+
+</script>
+<body>
+	<h1 id="title"><%= title %> <span><%= curTid + 1%></span>/<%= tutorials.length %></h1>
+<h4> Hi there! This tutorial intends to help you understand the correspondence between words and images. After this tutorial, you will be asked to assign these words to some images. Thank you! </h4>
+	<h3 id="desc">These images should be labeled at least as <strong style="color:skyblue"><%= tutorials[curTid].tId.toUpperCase() %></strong>.</h3>
+
+	<div class="row">
+		<div class="slideshow-container text-center">
+	
+			<% for (var i = 0; i < tutorials.length; i++) { %>
+				<div id="tid-<%= i %>" style="display:<% if (i != 0) { %>none<% } else {%>block<% }%>">
+						<% for (var j = 0; j < tutorials[i].urls.length; j++) { %>
+							<div class="slide">
+								<img src=<%= tutorials[i].urls[j] %> width="530px" height="530px" style="margin:auto">
+							</div>
+						<% } %>
+
+					<a class="prev" onclick="advanceSlide(-1)">&#10094;</a>
+					<a class="next" onclick="advanceSlide(1)">&#10095;</a>
+
+					<div style="text-align:center">
+						<% for (var j = 0; j < tutorials[i].urls.length; j++) { %>
+							<span class="dot" onclick="curentSlide(<%= j + 1 %>);"></span>
+						<% } %>
+					</div>
+				</div>
+			<% } %>	
+
+			<input id="next-tutorial-btn" class="btn btn-lg btn-success" type="button" value="Next Word" onclick="nextTutorial();">
+			<input id="try-btn" class="btn btn-lg btn-primary" type="button" value="Start labeling" style="display: none;" onclick="start();">
+		</div>
+	</div>
+
+	<div class="text-center">
+
+		<!--<p><a class="btn btn-lg btn-success" href="main.html" role="button">Next</a></p>-->
+	</div>
+
+</body>
+
+</html>

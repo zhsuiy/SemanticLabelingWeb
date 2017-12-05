@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>
+		<%= title %>
+	</title>
+	<link href="/stylesheets/bootstrap.css" rel="stylesheet">
+	<!-- Custom styles for this template -->
+	<link href="/stylesheets/jumbotron.css" rel="stylesheet">
+	<link href='/stylesheets/style.css' rel='stylesheet'>
+	<link href="/stylesheets/awesome-bootstrap-checkbox.css" rel='stylesheet'>
+	<link href='/font-awesome/css/font-awesome.min.css' rel='stylesheet'>
+	
+	<script type="application/javascript" src="/javascripts/jquery-1.11.1.js"></script>
+	<script type="application/javascript" src="/javascripts/bootstrap.js"></script>
+	<!--    <script type="application/javascript" src="/routes/datacontrol.js"></script> -->
+</head>
+
+<script>
+	var index = 0;
+	var images = <%- JSON.stringify(images) %>;
+	var maxIndex = <%- images.length %>;
+	var workerId = <%- JSON.stringify(workerId) %>;
+	var groupId = <%- JSON.stringify(groupId) %>;
+
+	var final = [];
+
+	function showProgress() {
+		$("#title span").text(index + 1);
+	}
+
+	function error(msg) {
+		$("#error").text(msg);
+		$("#error").show();
+	}
+
+	function next() {
+		var checkedNone = $("input[name='none-label']:checked");
+		var checkedWords = $("input[name='words']:checked");
+		if (checkedNone <= 0 && checkedWords.length <= 0) {
+			error("You should tick at least one word.");
+			return;
+		}
+		if (index < maxIndex - 1) {			
+			record();
+			index++;
+			show();
+		}
+	}
+
+	function show() {
+		showProgress();
+		showNextImage();
+		updateBtn();
+		resetCheck();
+	}
+
+	function showNextImage() {
+		for (var i = 0; i < maxIndex; i++) {
+			var imgId = '#img-' + i;
+			if (i == index) {
+				$(imgId).show();
+			} else {
+				$(imgId).hide();
+			}
+		}
+	}
+
+	function updateBtn() {
+		if (index == maxIndex - 1) {
+			$('#nextBtn').hide();
+			$('#submitBtn').show();	
+		}
+		$("#error").hide();
+	}
+
+	function resetCheck() {
+		$("input[name='words']:checked").each(function(){
+			this.checked = false;
+		});
+		$("input[name='none-label']:checked").each(function(){
+			this.checked = false;
+		});
+	}
+
+	function submit() {
+		record();
+		resetCheck();
+
+		var json = JSON.stringify(final);
+		console.log(json);
+		
+		var obj = {};
+		obj.workerId = workerId;
+		obj.groupId = groupId;
+		obj.results = json;
+
+		$.ajax({
+			url: '/results',
+			type: "POST",
+			data: obj,
+			success: function (result) {
+				console.log(result);
+				final = [];
+
+				$('#dialog').modal({
+					backdrop: "static",
+					keyboard: false
+				}).on('hidden.bs.modal', function () {
+					window.location.href = '/label';
+				});
+			},
+			error: function (xhr, resp, text) {
+				console.log(xhr, resp, text);
+				final = [];
+
+				$('#dialog').modal({
+					backdrop: "static",
+					keyboard: false
+				}).on('hidden.bs.modal', function () {
+					window.location.href = '/';
+				});
+			}
+		});
+	}
+
+	function record() {
+		var imageLabels = {};
+		imageLabels.id = images[index];
+		imageLabels.labels = [];
+		var checkedWords = $("input[name='words']:checked");
+		if (checkedWords.length > 0) {
+			checkedWords.each(function () {
+				imageLabels.labels.push($(this).attr('id'));
+				// imageLabels.labels.push($(this).val());
+			});
+		} else {
+			imageLabels.labels.push("none");
+		}
+
+		final.push(imageLabels);
+	}
+
+	$(document).ready(function () {		
+		showProgress();
+
+		var limit = 3;
+		$('input.styled').change(function () {
+			var checkedWords = $("input[name='words']:checked");
+			var checkedNone = $("input[name='none-label']:checked");
+
+			var wordsSize = checkedWords.length;
+			if (checkedNone.length > 0 || wordsSize > 0 && wordsSize <= limit) {
+				$("#error").hide();
+				$('#nextBtn').removeClass("disabled");
+			} else {
+				$('#nextBtn').addClass("disabled", true);
+			}
+			
+			if (wordsSize > limit) {
+				error("Three words at most.");
+				this.checked = false;
+				$('#nextBtn').removeClass("disabled");
+			}
+		});
+
+		$("input[name='none-label']").click(function () {
+			var checkedState = $(this).is(":checked");
+			var checkedWords = $("input[name='words']:checked");
+			if (checkedState && checkedWords.length > 0) {
+				$("#error").hide();
+				checkedWords.each(function(){
+					$(this).attr('checked', false);
+				});
+			}
+		});
+
+		$("input[name='words']").click(function () {
+			var checkedState = $(this).is(":checked");
+			var checkedNone = $("input[name='none-label']:checked");
+			if (checkedState && checkedNone.length > 0) {
+				checkedNone.each(function(){
+					$(this).attr('checked', false);
+				});
+			}
+		});
+	});
+</script>
+<body>
+	<h1 id="title"><%= title %> <span></span>/<%= images.length %></h1>
+	<h3>Please tick all the words that apply to the image.</h3>
+
+	<div class="row">
+		<div class="col-sm-8 text-center">
+
+			<% for (var i = 0; i < images.length; i++) { %>
+				<img src=<%= images[i] %> id="img-<%= i %>" width="600px" height="600px" alt="..." style="display:<% if (i != 0) { %>none;"><% } else { %>block;"><% } %>
+			<% } %>
+
+		</div>
+		<div class="col-sm-4">
+			<!-- <form> -->
+				<p>
+					<% for(var i = 0; i < words.length; i++) { %>
+						<!-- <div class="form-check">
+							<label class="form-check-label lead">
+								<input class="form-check-input" type="checkbox" name="words" value=<%= words[i] %>>
+								<%= words[i] %>
+							</label>				
+						</div> -->
+						<div class="checkbox checkbox-success">
+							<input class="styled" name="words" type="checkbox" id="<%= words[i] %>">
+							<label class="lead" for="<%= words[i] %>">
+								<%= words[i] %>
+							</label>
+						</div>
+					<% } %>
+
+					<div class="checkbox checkbox-success">
+						<input class="styled" name="none-label" type="checkbox" id="none">
+						<label class="lead" for="none">
+							None of above
+						</label>
+					</div>
+				</p>
+				<p>
+					<div id="error" class="alert alert-danger" role="alert" style="display:none;"></div>
+					<input id="nextBtn" class="btn btn-lg btn-success disabled" type="button" value="Next" style="display:block" onclick="next();" />
+					<input id="submitBtn" class="btn btn-lg btn-primary" type='button' value='Submit' style="display:none" onclick="submit();" />
+				</p>
+			<!-- </form> -->
+		</div>
+	</div>
+
+	<!-- Modal -->
+	<div class="modal fade" id="dialog" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <!-- <button type="button" class="close" data-dismiss="modal">&times;</button> -->
+          <h4 class="modal-title">Submit succeed</h4>
+        </div>
+        <div class="modal-body">
+          <p>Thank you!</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+	<div class="text-center">
+
+		<!--<p><a class="btn btn-lg btn-success" href="main.html" role="button">Next</a></p>-->
+	</div>
+
+</body>
+
+</html>

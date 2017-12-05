@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="shortcut icon" href="/icon/icon.png">
+
+    <title>Semantic Scene Scoring Page</title>
+    <!-- Bootstrap core CSS -->
+    <link href="/stylesheets/bootstrap.css" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <link href="/stylesheets/jumbotron.css" rel="stylesheet">
+    <!-- own style -->
+    <link href="/stylesheets/main.css" rel="stylesheet">
+
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <script type="application/javascript" src="/javascripts/jquery.min.js"></script>
+    <script type="application/javascript" src="/javascripts/score.js"></script>
+  </head>
+
+
+
+
+  <body>
+    <div class="container">
+      <div class="header">
+        <h3 class="text-muted" >Semantic Scene Scoring</h3>
+      </div>
+
+
+
+
+      <div class="row form-group">
+        <div class="well">
+          Please give scores for the following scenes on how much degree they match the description
+          <strong id="description"></strong> between
+          <strong> 1 (least match) </strong>and
+          <strong>5 (best match).</strong>
+
+        </div>
+        <div>
+          <div id="content-panel">
+          </div>
+          <div>
+            <p id="groups" style="display: none"><%= data %></p>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="text-center">
+        <p>
+          <div id="error" class="alert alert-danger" role="alert"></div>
+          <input id="nextBtn"  class="btn btn-lg btn-success" type="button" value="next" onclick="next();"/>
+          <input id="submitBtn" class="btn btn-lg btn-success"  type='button' value='Submit' style="display:none" onclick="submit();"/>
+        </p>
+        <!--<p><a class="btn btn-lg btn-success" href="main.html" role="button">Next</a></p>-->
+      </div>
+      <div class="footer">
+        <p>2016.07.31</p>
+      </div>
+
+    </div> <!-- /container -->
+
+
+
+  </body>
+</html>

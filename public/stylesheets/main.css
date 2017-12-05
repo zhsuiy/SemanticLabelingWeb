@@ -1,0 +1,28 @@
+body,button, input, select, textarea,h1 ,h2, h3, h4, h5, h6 {
+    font-family: Microsoft YaHei,'宋体' , Tahoma, Helvetica, Arial, "\5b8b\4f53", sans-serif;}
+
+body {
+    margin: 10px;
+}
+
+body .navbar .brand {
+    color: #FFFFFF;
+}
+
+.hero-unit h1 {
+    margin: 0 0 10px 0;
+}
+
+.hero-unit .file-input-wrapper {
+    margin: 0 0 10px 0;
+}
+
+pre.prettyprint {
+    padding: 10px;
+    margin-top: 10px;
+}
+
+img.proxyvideio:hover{
+    opacity: 0.7;
+
+}

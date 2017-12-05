@@ -1,0 +1,262 @@
+[
+ {
+  "00b89352200c87cc03f0ecc4af9cabbf_0_0": {
+   "boy": 0,
+   "girl": 1,
+   "romantic": 0.5,
+   "modern": 0.5,
+   "young": 0.5,
+   "lively": 0.25,
+   "minimalist": 0,
+   "sporty": 0,
+   "none": 0
+  }
+ },
+ {
+  "0a180c631c791f02fbd630bea888d0ae_1_9": {
+   "boy": 0,
+   "girl": 1,
+   "romantic": 0.5,
+   "modern": 0.25,
+   "young": 0.5,
+   "lively": 0.25,
+   "minimalist": 0,
+   "sporty": 0,
+   "none": 0
+  }
+ },
+ {
+  "0a230a61d29b897d18f18d1740c6133b_0_1": {
+   "boy": 0.2,
+   "girl": 0.8,
+   "romantic": 0.2,
+   "modern": 0.4,
+   "young": 0.2,
+   "lively": 0.2,
+   "minimalist": 0.2,
+   "sporty": 0,
+   "none": 0
+  }
+ },
+ {
+  "0a47882b40daf033e05e0b2dffafa6f7_0_13": {
+   "boy": 0.2,
+   "girl": 0.8,
+   "romantic": 0.2,
+   "modern": 0.4,
+   "young": 0.2,
+   "lively": 0.4,
+   "minimalist": 0,
+   "sporty": 0,
+   "none": 0
+  }
+ },
+ {
+  "0ab6f0c5f0aafb8b62c96c89e6d63ba9_0_1": {
+   "boy": 0.16666666666666666,
+   "girl": 0.8333333333333334,
+   "romantic": 0.16666666666666666,
+   "modern": 0.6666666666666666,
+   "young": 0.3333333333333333,
+   "lively": 0,
+   "minimalist": 0.16666666666666666,
+   "sporty": 0.3333333333333333,
+   "none": 0
+  }
+ },
+ {
+  "0b3c558f26b1c066c5c5d851e2925b05_0_6": {
+   "boy": 0,
+   "girl": 0.8333333333333334,
+   "romantic": 0.3333333333333333,
+   "modern": 0.3333333333333333,
+   "young": 0.5,
+   "lively": 0,
+   "minimalist": 0.5,
+   "sporty": 0,
+   "none": 0
+  }
+ },
+ {
+  "0b4b20c780b61c833501a06bb7196389_0_4": {
+   "boy": 0,
+   "girl": 1,
+   "romantic": 0.5,
+   "modern": 0.5,
+   "young": 0.25,
+   "lively": 0.25,
+   "minimalist": 0,
+   "sporty": 0,
+   "none": 0
+  }
+ },
+ {
+  "0b969976b3a6c086ad47c6786d0dc326_0_48": {
+   "boy": 0,
+   "girl": 1,
+   "romantic": 0.5,
+   "modern": 0.25,
+   "young": 0.25,
+   "lively": 0.5,
+   "minimalist": 0.25,
+   "sporty": 0,
+   "none": 0
+  }
+ },
+ {
+  "0be9c5288dfcc5af8051dcc926255fe7_0_8": {
+   "boy": 0.25,
+   "girl": 0.75,
+   "romantic": 0.25,
+   "modern": 0.25,
+   "young": 0.25,
+   "lively": 0.25,
+   "minimalist": 0,
+   "sporty": 0,
+   "none": 0.25
+  }
+ },
+ {
+  "0c1cdc9659aedef9d5b2790fbd39837d_1_5": {
+   "boy": 0,
+   "girl": 0.75,
+   "romantic": 1,
+   "modern": 0,
+   "young": 0.25,
+   "lively": 0.25,
+   "minimalist": 0,
+   "sporty": 0,
+   "none": 0
+  }
+ },
+ {
+  "0c55147a28385f41917919cc41068a25_1_1": {
+   "boy": 0,
+   "girl": 1,
+   "romantic": 0,
+   "modern": 0.2,
+   "young": 0.4,
+   "lively": 0.4,
+   "minimalist": 0.2,
+   "sporty": 0,
+   "none": 0
+  }
+ },
+ {
+  "0c58e6aae17b328f592ee6dc79ea4713_0_0": {
+   "boy": 0,
+   "girl": 1,
+   "romantic": 0.2,
+   "modern": 0.4,
+   "young": 0.2,
+   "lively": 0.2,
+   "minimalist": 0.2,
+   "sporty": 0.2,
+   "none": 0
+  }
+ },
+ {
+  "0ceefb7a39771e3fefd6ee7579fc65e4_0_212": {
+   "boy": 0.4,
+   "girl": 1,
+   "romantic": 0.4,
+   "modern": 0.6,
+   "young": 0,
+   "lively": 0.2,
+   "minimalist": 0,
+   "sporty": 0,
+   "none": 0
+  }
+ },
+ {
+  "0d152973c8c83adbe3f837bba45fb552_0_9": {
+   "boy": 0.2,
+   "girl": 1,
+   "romantic": 0.4,
+   "modern": 0.4,
+   "young": 0.4,
+   "lively": 0,
+   "minimalist": 0,
+   "sporty": 0.2,
+   "none": 0
+  }
+ },
+ {
+  "0d6278b951a1a057672408e0291485a0_0_0": {
+   "boy": 0,
+   "girl": 1,
+   "romantic": 0.25,
+   "modern": 0.25,
+   "young": 0,
+   "lively": 0.5,
+   "minimalist": 0.5,
+   "sporty": 0,
+   "none": 0
+  }
+ },
+ {
+  "0dcb0e2f0e45917ab10cb095608e12b5_0_16": {
+   "boy": 0.25,
+   "girl": 1,
+   "romantic": 0,
+   "modern": 0.5,
+   "young": 0,
+   "lively": 0.25,
+   "minimalist": 0.5,
+   "sporty": 0.25,
+   "none": 0
+  }
+ },
+ {
+  "0dd5c262d40a01c26e8d02d5bdc68bf2_0_2": {
+   "boy": 0.25,
+   "girl": 1,
+   "romantic": 0,
+   "modern": 0,
+   "young": 0.25,
+   "lively": 0,
+   "minimalist": 0.5,
+   "sporty": 0,
+   "none": 0
+  }
+ },
+ {
+  "0e2ba56f8130728174e4689ab4f0d828_0_47": {
+   "boy": 0.5,
+   "girl": 1,
+   "romantic": 0.25,
+   "modern": 0.5,
+   "young": 0.25,
+   "lively": 0.25,
+   "minimalist": 0,
+   "sporty": 0.25,
+   "none": 0
+  }
+ },
+ {
+  "0e4faad95e2c0e8893fb523a1d7db9ce_1_1": {
+   "boy": 0,
+   "girl": 1,
+   "romantic": 0,
+   "modern": 0.25,
+   "young": 0.25,
+   "lively": 0.25,
+   "minimalist": 0.25,
+   "sporty": 0,
+   "none": 0
+  }
+ },
+ {
+  "0e5ad62358d2214e2ff4dd6abccdb3eb_0_0": {
+   "boy": 0,
+   "girl": 1,
+   "romantic": 0,
+   "modern": 0.5,
+   "young": 0.25,
+   "lively": 0,
+   "minimalist": 0.5,
+   "sporty": 0,
+   "none": 0
+  }
+ }
+]
