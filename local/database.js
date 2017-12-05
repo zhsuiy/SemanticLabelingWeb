@@ -17,8 +17,8 @@ var path = require('path');
 var _ = require('lodash');
 
 var GROUPS = 'groups',
-    WOKERS = 'wokers',
-    WOKER_GROUP_PREFIX = "woker-group"
+    WORKERS = 'workers',
+    WORKER_GROUP_PREFIX = "worker-group"
     COLON = ':',
     GROUP_MAX_LABEL_COUNT = 3;
 
@@ -40,8 +40,9 @@ client.on('error', function (err) {
 
 function submitWorker(workerId, groupId, accuracy) {
     client.multi()
-    .zadd(WOKERS, accuracy, workerId)
-    .set(WOKER_GROUP_PREFIX + COLON + workerId, groupId)
+    .zadd(WORKERS, accuracy, workerId)
+    .set(WORKER_GROUP_PREFIX + COLON + workerId, groupId)
+    .rpush(groupId, workerId)
     .exec(function (err, replies) {
         if (err) {
             console.log(err);
@@ -63,6 +64,7 @@ function submitResults(workerId, groupId, labelResults, callback) {
         multi.rpush(imageId, workerId);
         item.labels.forEach(label => {
             multi.rpush(imageId + COLON + label, workerId);
+            multi.rpush(workerId + COLON + imageId, label);
         });
     });
 

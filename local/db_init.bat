@@ -1,1 +1,1 @@
-node db_init.js
+node db_init.js initGroups
