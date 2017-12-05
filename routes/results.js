@@ -36,8 +36,8 @@ function getAccuracy(array) {
   for (var item of array) {
     var imageId = path.basename(item.id, path.extname(item.id));
     // console.log(imageId);
-    var labels = item.labels.map(v => v.toLowerCase());
-    // console.log(labels);
+	var labels = item.labels.map(v => v.trim().toLowerCase());
+    console.log(labels);
 
     var obj = {};    
     obj.imageId = imageId;
