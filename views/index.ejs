@@ -75,8 +75,7 @@
 </script>
 <body>
 	<h1 id="title"><%= title %> <span><%= curTid + 1%></span>/<%= tutorials.length %></h1>
-<h4> Hi there! This tutorial intends to help you understand the correspondence between words and images. After this tutorial, you will be asked to assign these words to some images. Thank you! </h4>
-	<h3 id="desc">These images should be labeled at least as <strong style="color:skyblue"><%= tutorials[curTid].tId.toUpperCase() %></strong>.</h3>
+	<h3 id="desc">Theses pictures would be labeled as <strong style="color:skyblue"><%= tutorials[curTid].tId.toUpperCase() %></strong>.</h3>
 
 	<div class="row">
 		<div class="slideshow-container text-center">
@@ -100,8 +99,8 @@
 				</div>
 			<% } %>	
 
-			<input id="next-tutorial-btn" class="btn btn-lg btn-success" type="button" value="Next Word" onclick="nextTutorial();">
-			<input id="try-btn" class="btn btn-lg btn-primary" type="button" value="Start labeling" style="display: none;" onclick="start();">
+			<input id="next-tutorial-btn" class="btn btn-lg btn-success" type="button" value="Next Tutorial" onclick="nextTutorial();">
+			<input id="try-btn" class="btn btn-lg btn-primary" type="button" value="Try yourself" style="display: none;" onclick="start();">
 		</div>
 	</div>
 
