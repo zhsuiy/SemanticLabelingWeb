@@ -1,7 +1,7 @@
 var fs = require('fs');
 var path = require('path');
 
-var groupnum = 10;
+var groupnum = 3;
 var allimagepath = './allimages';
 var imagedir = '../public/images/';
 var groupname = 'group-';

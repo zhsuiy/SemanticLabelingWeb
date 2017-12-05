@@ -4,7 +4,7 @@ var db = require('../local/database');
 var router = express.Router();
 
 var TEST_PREFIX = "test-";
-var ACCURACY_THRESHOLD = 0.75
+var ACCURACY_THRESHOLD = 0.6
 
 /* GET users listing. */
 router.post('/', function(req, res, next) {
@@ -22,7 +22,7 @@ router.post('/', function(req, res, next) {
       res.send(result ? 'SUBMIT SUCCEED' : 'SUBMIT FAILED');
     });
   } else {
-    console.log('Accuracy did not pass threshold, label results will not submit to db');
+    console.log('Accuracy did not pass threshold, label results will not be submitted to db');
     res.send('ACCURACY TOO LOW');
   }
 });

@@ -19,6 +19,7 @@ These images are used to validate if a labeller is reliable.
 The threshold for labelling accuracy can be set in "./routes/results.js" ACCURACY_THRESHOLD
 
 2. init database
+* set redis ip and port in database.js !!! VERY IMPORTANT
 * run db_clear
 * run db_init
 
