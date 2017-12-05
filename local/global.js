@@ -26,9 +26,10 @@ var tutorials = [];
                     continue;
                 if (tmpwordarr[i][0] === '#')
                     continue;
-                wordarr.push(tmpwordarr[i]);
+                wordarr.push(tmpwordarr[i].trim());
             }
             console.log('wordarr: ' + wordarr.length);
+			console.log(wordarr);
         }
     })
 })();
