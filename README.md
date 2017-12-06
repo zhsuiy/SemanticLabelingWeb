@@ -1,7 +1,7 @@
 # SemanticLabelingWeb
 
 ==== Environment ====
-1. Install Nodejs 8.9.1
+1. Install Nodejs 9.2.0
 2. Install Redis (Optional)
 
 
