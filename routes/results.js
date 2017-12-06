@@ -16,8 +16,9 @@ router.post('/', function(req, res, next) {
   
   var accuracy, labelResults;
   [accuracy, labelResults] = getAccuracy(array);
-  db.submitWorker(workerId, groupId, accuracy);
-  if (accuracy >= ACCURACY_THRESHOLD) {
+  var isBadData = accuracy < ACCURACY_THRESHOLD;
+  db.submitWorker(workerId, groupId, accuracy, isBadData);
+  if (!isBadData) {
     db.submitResults(workerId, groupId, labelResults, function (result) {
       res.send(result ? 'SUBMIT SUCCEED' : 'SUBMIT FAILED');
     });

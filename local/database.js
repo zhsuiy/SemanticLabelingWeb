@@ -38,12 +38,14 @@ client.on('error', function (err) {
     console.log('DB error: ' + err);
 });
 
-function submitWorker(workerId, groupId, accuracy) {
-    client.multi()
-    .zadd(WORKERS, accuracy, workerId)
-    .set(WORKER_GROUP_PREFIX + COLON + workerId, groupId)
-    .rpush(groupId, workerId)
-    .exec(function (err, replies) {
+function submitWorker(workerId, groupId, accuracy, isBadData) {
+    var multi = client.multi()
+        .zadd(WORKERS, accuracy, workerId)
+        .set(WORKER_GROUP_PREFIX + COLON + workerId, groupId);
+    if (!isBadData) {
+        multi.rpush(groupId, workerId);
+    }
+    multi.exec(function (err, replies) {
         if (err) {
             console.log(err);
             return;
