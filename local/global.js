@@ -19,7 +19,7 @@ var tutorials = [];
             console.log(data);
            // callback(data);
             wordarr.length = 0;
-            var tmpwordarr = data.toString().split("\n");
+            var tmpwordarr = data.toString().split(/\r?\n/);
             for (var i = 0, len = tmpwordarr.length; i < len; i++) 
             {
                 if (tmpwordarr[i].length === 0)
