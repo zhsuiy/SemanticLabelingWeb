@@ -38,7 +38,7 @@
 	function next() {
 		var checkedNone = $("input[name='none-label']:checked");
 		var checkedWords = $("input[name='words']:checked");
-		if (checkedNone <= 0 && checkedWords.length <= 0) {
+		if (checkedNone.length <= 0 && checkedWords.length <= 0) {
 			error("You should tick at least one word.");
 			return;
 		}
