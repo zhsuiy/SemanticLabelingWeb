@@ -85,6 +85,11 @@
 	}
 
 	function submit() {
+		if (this.submiting) {
+			return;
+		}
+		$('#submitBtn').addClass("disabled", true);
+		this.submiting = true;
 		record();
 		resetCheck();
 
@@ -103,6 +108,8 @@
 			success: function (result) {
 				console.log(result);
 				final = [];
+				self.submiting = false;
+				$('#submitBtn').removeClass("disabled");
 
 				$('#dialog').modal({
 					backdrop: "static",
@@ -114,6 +121,8 @@
 			error: function (xhr, resp, text) {
 				console.log(xhr, resp, text);
 				final = [];
+				self.submiting = false;
+				$('#submitBtn').removeClass("disabled");
 
 				$('#dialog').modal({
 					backdrop: "static",
