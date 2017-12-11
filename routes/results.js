@@ -4,7 +4,7 @@ var db = require('../local/database');
 var router = express.Router();
 
 var TEST_PREFIX = "test-";
-var ACCURACY_THRESHOLD = 0.6
+var ACCURACY_THRESHOLD = 0.5
 
 /* GET users listing. */
 router.post('/', function(req, res, next) {
