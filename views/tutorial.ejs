@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>
+		<%= title %>
+	</title>
+	<link href="/stylesheets/bootstrap.css" rel="stylesheet">
+	<!-- Custom styles for this template -->
+	<link href="/stylesheets/jumbotron.css" rel="stylesheet">
+	<link href='/stylesheets/style.css' rel='stylesheet'>
+	<link href="/stylesheets/awesome-bootstrap-checkbox.css" rel='stylesheet'>
+	<link href='/font-awesome/css/font-awesome.min.css' rel='stylesheet'>
+	
+	<script type="application/javascript" src="/javascripts/jquery-1.11.1.js"></script>
+	<script type="application/javascript" src="/javascripts/bootstrap.js"></script>
+	<!--    <script type="application/javascript" src="/routes/datacontrol.js"></script> -->
+</head>
+<script>
+	var tid = <%= curTid %>,
+		array = <%- JSON.stringify(tutorials) %>,
+		slideIndex;
+
+	function showSlides() {
+		var slides = $("#tid-" + tid + " > .slide");
+		var dots = $("#tid-" + tid + " span.dot");
+		if (slideIndex > slides.length) {
+			slideIndex = 1;
+		}
+		if (slideIndex < 1) {
+			slideIndex = slides.length;
+		}
+		for (var i = 0; i < slides.length; i++) {
+			slides[i].style.display = "none";
+		}
+		for (i = 0; i < dots.length; i++) {
+			dots[i].className = dots[i].className.replace(" active", "");
+		}
+		slides[slideIndex - 1].style.display = "block";
+  		dots[slideIndex - 1].className += " active";
+	}
+
+	function advanceSlide(offset) {
+		slideIndex += offset;
+		showSlides();
+	}
+
+	function curentSlide(index) {
+		slideIndex = index;
+		showSlides();
+	}
+
+	function previousTutorial() {
+		$("#tid-" + tid--).hide();
+		$("#title span").text(tid + 1);
+		$("#desc strong").text(array[tid].tId.toUpperCase());
+		$("#tid-" + tid).show();
+		slideIndex = 1;		
+		showSlides();
+		if (tid == 0) {
+			// $("#previous-tutorial-btn").hide();
+			$("#previous-tutorial-btn").prop('disabled', true);
+		}
+		if (array.length > 1) {
+			// $("#next-tutorial-btn").show();
+			$("#next-tutorial-btn").prop('disabled', false);
+		}
+	}
+
+	function nextTutorial() {
+		$("#tid-" + tid++).hide();
+		$("#title span").text(tid + 1);
+		$("#desc strong").text(array[tid].tId.toUpperCase());
+		$("#tid-" + tid).show();
+		slideIndex = 1;		
+		showSlides();
+		if (tid == array.length - 1) {
+			// $("#next-tutorial-btn").hide();
+			$("#next-tutorial-btn").prop('disabled', true);
+		}
+		if (array.length > 1) {
+			// $("#previous-tutorial-btn").show();
+			$("#previous-tutorial-btn").prop('disabled', false);
+		}
+	}
+
+	$().ready(function () {
+		slideIndex = 1;
+		showSlides();
+		$("#previous-tutorial-btn").prop('disabled', true);
+		if (array.length > 1) {
+			$("#next-tutorial-btn").prop('disabled', false);
+		}
+	});
+
+</script>
+<body>
+	<h1 id="title"><%= title %> <span><%= curTid + 1%></span>/<%= tutorials.length %></h1>
+	<h4>Hi there! Thank you for participating in this user study. We would like to find out how people judge the styles of rooms. We will start with a short tutorial showing some examples of rooms with different styles. You will then be asked to select one or more styles that apply to each room.</h4>
+	<h3 id="desc">These are examples of rooms of the <strong style="color:skyblue"><%= tutorials[curTid].tId.toUpperCase() %></strong> style.</h3>
+	
+	<div class="row">
+		<div class="slideshow-container text-center">
+	
+			<% for (var i = 0; i < tutorials.length; i++) { %>
+				<div id="tid-<%= i %>" style="display:<% if (i != 0) { %>none<% } else {%>block<% }%>">
+						<% for (var j = 0; j < tutorials[i].urls.length; j++) { %>
+							<div class="slide">
+								<img src=<%= tutorials[i].urls[j] %> width="530px" height="530px" style="margin:auto">
+							</div>
+						<% } %>
+
+					<a class="prev" onclick="advanceSlide(-1)">&#10094;</a>
+					<a class="next" onclick="advanceSlide(1)">&#10095;</a>
+
+					<div style="text-align:center">
+						<% for (var j = 0; j < tutorials[i].urls.length; j++) { %>
+							<span class="dot" onclick="curentSlide(<%= j + 1 %>);"></span>
+						<% } %>
+					</div>
+				</div>
+			<% } %>	
+			
+				<div class="btn-group inline">
+					<button id="previous-tutorial-btn" class="btn btn-success" type="button" onclick="previousTutorial();">< Prev Word</button>
+					<button id="next-tutorial-btn" class="btn btn-success" type="button" onclick="nextTutorial();">Next Word ></button>
+				</div>
+		</div>
+	</div>
+
+	<div class="text-center">
+
+		<!--<p><a class="btn btn-lg btn-success" href="main.html" role="button">Next</a></p>-->
+	</div>
+
+</body>
+
+</html>
