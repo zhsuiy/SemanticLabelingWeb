@@ -214,7 +214,7 @@
 		<div class="col-sm-8 text-center">
 
 			<% for (var i = 0; i < images.length; i++) { %>
-				<img src=<%= images[i] %> id="img-<%= i %>" style="margin:auto;display:block;height:auto;max-width:100%;max-height:600px;display:<% if (i != 0) { %>none;"><% } else { %>block;"><% } %>
+				<img src=<%= images[i] %> id="img-<%= i %>" width="600px" height="600px" alt="..." style="display:<% if (i != 0) { %>none;"><% } else { %>block;"><% } %>
 			<% } %>
 
 		</div>
